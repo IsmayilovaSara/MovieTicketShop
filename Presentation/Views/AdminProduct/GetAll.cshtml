@@ -1,0 +1,104 @@
+﻿@using DTO
+@model PagedResponseDTO<ProductDTO>
+
+    <div class="row justify-content-md-center mt-3">
+        <div class="col col-md-auto">
+            <ul class="list-group bg-white list-group-horizontal">
+            <li class="list-group-item list-group-item-secondary">
+                <a class="text-decoration-none" asp-action="GetAll" asp-route-order="@ViewBag.NameSort" asp-route-search="@ViewBag.Search" asp-route-changeSort="true">Name</a>
+            </li>
+            <li class="list-group-item list-group-item-secondary">
+                <a class="text-decoration-none" asp-action="GetAll" asp-route-order="@ViewBag.PriceSort" asp-route-search="@ViewBag.Search" asp-route-changeSort="true">Price</a>
+            </li>
+
+            <li class="list-group-item list-group-item-secondary">
+                <a class="text-decoration-none" asp-action="GetAll" asp-route-order="@ViewBag.IMDbRatingSort" asp-route-search="@ViewBag.Search" asp-route-changeSort="true">IMDbRating</a>
+            </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row justify-content-md-center mx-auto">
+    <a style="width:250px" class="btn btn-outline-success" asp-controller="AdminProduct" asp-action="Add">Add new</a>
+    </div>
+
+
+  
+
+
+
+
+    <div class="row justify-content-md-center mx-auto">
+        <form method="get">
+            <div class="form-inline form-group justify-content-center" >
+                <label class="control-label">Search </label>
+                <div class="row">
+                  <div class="col-3">
+                    <input name="search" value="@ViewBag.Search" class="form-control width-300" />
+                  </div>
+                    <div class="col-3">
+                    <input type="submit" value="Filter" class="btn btn-primary" />
+                </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+<div class="row">
+
+    @{
+        foreach (var item in Model.Values)
+        {
+
+                        <div class="col-3 my-4" >
+                            <a style="text-decoration:none" class="" asp-controller="Product" asp-action="Get" asp-route-id=@item.Id>
+                                <div class="card card-size-250 bg-dark text-light">
+                                <img class="card-img-top" src=@Url.Content(@item.ImgPath) alt="Card image"> <!--card-img-size-50-->
+
+                                <div class="card-body">
+                                    <h4 class="card-title">@item.Name</h4>
+                                    <p class="card-text">Price : @item.Price</p>
+                                    <p class="card-text">IMDbRating : @item.IMDbRating</p>
+                                    <p class="card-text">Description : @item.Note</p>
+                                </div>
+                                </div>
+                            </a>
+
+                        <a asp-action="Update" asp-route-id=@item.Id style="width:250px" class="btn btn-outline-success">
+                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                            Update
+                        </a>
+
+                        </div>
+        }
+       
+
+    }
+
+</div>
+
+<div class="row justify-content-md-center">
+
+    <ul class="pagination justify-content-center">
+        @if (ViewBag.HasPrevious)
+        {
+            <li class="page-item"><a class="page-link" asp-action="GetAll" asp-route-page="@(Model.Page-1)"
+            asp-route-order="@ViewBag.PriceSort" asp-route-search="@ViewBag.Search">Previous</a></li>
+        }
+        else
+        {
+            <li class="page-item disabled"><a class="page-link">Previous</a></li>
+        }
+        @if (ViewBag.HasNext)
+        {
+            <li class="page-item"><a class="page-link" asp-action="GetAll" asp-route-page="@(Model.Page+1)"
+               asp-route-order="@ViewBag.PriceSort" asp-route-search="@ViewBag.Search">Next</a>
+            </li>
+        }
+        else
+        {
+            <li class="page-item disabled"><a class="page-link">Next</a></li>
+        }
+    </ul>
+</div>

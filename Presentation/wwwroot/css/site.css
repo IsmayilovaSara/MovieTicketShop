@@ -1,0 +1,72 @@
+html {
+    font-size: 18px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+
+.bg-img {
+    background-image: url("https://static.kent.ac.uk/nexus/ems/1167.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+    background-color: #070a1b;
+}
+
+.card-img-size-50 {
+    width: 55%;
+    height: 55%;
+}
+
+
+.card-size-80perc {
+    width: 80%;
+}
+
+.card-size-250 {
+    width: 250px;
+}
+
+
+.width-300 {
+    width: 300px;
+}
+
+.btn-p-8-16 {
+    padding: 8px 16px !important;
+}
+
+
+
+.grad-bg {
+    background: linear-gradient(-45deg, #3d1ef9, #e73c7e, #ada9a9, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}

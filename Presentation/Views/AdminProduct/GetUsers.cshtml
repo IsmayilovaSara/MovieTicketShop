@@ -1,0 +1,71 @@
+﻿@using DTO
+@model PagedResponseDTO<UserDTO>
+
+    @{
+    Layout = "_Layout";
+    }
+
+    <link rel="stylesheet" href="~/css/adminUserPage.css" asp-append-version="true" />
+    
+    <h1>Users List</h1>
+<hr>
+<div class="container bootstrap snippets bootdey">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="main-box no-header clearfix">
+                <div class="main-box-body clearfix">
+                    <div class="table-responsive">
+                        <table class="table user-list">
+                            <thead>
+                                <tr>
+                                    <th><span>User</span></th>
+                                    <th><span>Created</span></th>
+                                    <th class="text-center"><span>Status</span></th>
+                                    <th><span>Username</span></th>
+                                    <th>&nbsp;</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @{
+                                    foreach (var item in Model.Values) {
+                                        <tr>
+                                            <td>
+                                                <img src="https://bootdey.com/img/Content/user_1.jpg" alt="">
+                                                <a  class="user-link" style="text-decoration:none;">@item.Username</a>
+                                                <span class="user-subhead">Member</span>
+                                            </td>
+                                            <td>2013/08/12</td>
+                                            <td class="text-center">
+                                                <span class="label label-default">pending</span>
+                                            </td>
+                                            <td>
+                                                <a href="#">@item.Username</a>
+                                            </td>
+                                            <td style="width: 20%;">
+                                            <a style="width:75px" class="btn btn-outline-fail" asp-controller="Admin" asp-action="UpdateUser" asp-route-id=@item.Id >
+                                                    <span class="fa-stack">
+                                                        <i class='fa fa-edit' style='font-size:27px'></i>
+                                                    </span>
+                                                </a>
+                                            <form style="width:75px" class="btn btn-outline-fail"  asp-area="" asp-controller="Admin" asp-action="DeleteUser" asp-route-id=@item.Id>
+                                           <button type="submit" style="border:hidden; background:transparent;">
+                                            <span class="fa-stack">
+                                                      <i class="fa fa-trash-o" style="font-size:27px; margin-left:-15px;"></i>
+                                                    </span>
+                                             </button>
+                                            </form>
+                                            </td>
+                                        </tr>
+                                    }   
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<a class="text-decoration-none" asp-action="GetUsers" asp-route-order="@ViewBag.NameSort">Name</a>
