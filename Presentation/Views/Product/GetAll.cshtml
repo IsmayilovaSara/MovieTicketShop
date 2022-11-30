@@ -50,9 +50,12 @@
         {
 
                         <div class="col-3 my-4" >
-                            <a style="text-decoration:none" class="" asp-controller="Product" asp-action="Get" asp-route-id=@item.Id>
+                            <p style="text-decoration:none" class="" asp-controller="Product" asp-action="Get" asp-route-id=@item.Id>
                                 <div class="card card-size-250 bg-dark text-light">
+
                                 <img class="card-img-top" src=@Url.Content(@item.ImgPath) alt="Card image"> <!--card-img-size-50-->
+
+                               
 
                                 <div class="card-body">
                                     <h4 class="card-title">@item.Name</h4>
@@ -80,7 +83,7 @@
                                 </form>
                             </div>
                             </div>
-                        </a>
+                        </p>
                     </div>
   }
   }
@@ -101,15 +104,22 @@
         {
             <li class="page-item disabled"><a class="page-link">Previous</a></li>
         }
-        @if (ViewBag.HasNext)
+        @if(ViewBag.HasNext)
         {
-            <li class="page-item"><a class="page-link" asp-action="GetAll" asp-route-page="@(Model.Page+1)"
-               asp-route-order="@ViewBag.PriceSort" asp-route-search="@ViewBag.Search">Next</a>
+            <li class="page item"><a class="page-link" asp-action="GetAll" asp-route-page="@(Model.Page+1)">
+             asp-route-order="ViewBag.PriceSort" asp-route-search="@ViewBag.Search">Next</a>
             </li>
+
         }
         else
         {
             <li class="page-item disabled"><a class="page-link">Next</a></li>
         }
-    </ul>
-</div>
+        </ul>
+        </div>
+
+
+
+
+
+

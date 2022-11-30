@@ -1,7 +1,7 @@
 ﻿@using DTO
 @using System.Security.Claims
 @using Services.Abstract 
-@inject UserDTO user
+
 
 @inject IUserService _userService
 @using System.Globalization
@@ -21,7 +21,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark box-shadow ">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Ticket Shop</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Product" asp-action="GetAll"><b>Ticket Shop</b></a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -30,16 +30,19 @@
 
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
+                       
+                         <li class="nav-item">                            
+                            <a class="nav-link text-light" asp-area="" asp-controller="Product" asp-action="GetAll"><b>Products</b></a>
+                        </li>  
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Product" asp-action="GetAll">Products</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Product" asp-action="GetCart">Cart</a>
+                             <a class="nav-link text-light" asp-area="" asp-controller="Product" asp-action="GetCart"><b><i class="fas fa-shopping-cart" style="font-size:17px;"></i></b>
+                          <span class="badge bg-secondary">
+                                @_userService.GetCartCount(user.Id)    
+                            </span>
+                            </a>
                         </li>                                
                     </ul>
+                    
                     <p class= "text-light" mx-3 my-1>
                         Welcome @CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Context.User.FindFirst(x=>x.Type=="Username")?.Value)
                     </p>
@@ -57,6 +60,8 @@
     </header>
 
 
+   
+
 
     <div class="container">
         <main role="main">
@@ -64,7 +69,7 @@
         </main>
     </div>
 
-
+     @*
 
     <footer class="footer text-muted bg-dark mt-2">
         <div class="container text-light">
@@ -74,6 +79,6 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+    @await RenderSectionAsync("Scripts", required: false)*@
 </body>
-</html>
+</html> 
