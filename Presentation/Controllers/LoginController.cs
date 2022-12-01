@@ -20,7 +20,8 @@ namespace Presentation.Controllers
         public IActionResult SignIn()
         {
             if (HttpContext.User.Identity.IsAuthenticated)
-                RedirectToAction("Index", "Home");
+                RedirectToAction("GetAll", "Product");
+                RedirectToAction("GetAll", "AdminProduct");
 
             return View();
         }
@@ -34,7 +35,8 @@ namespace Presentation.Controllers
 
                 Authenticate(user);
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("GetAll", "Product");
+                return RedirectToAction("GetAll", "AdminProduct");
             }
             catch (Exception ex)
             {

@@ -34,13 +34,9 @@
                          <li class="nav-item">                            
                             <a class="nav-link text-light" asp-area="" asp-controller="Product" asp-action="GetAll"><b>Products</b></a>
                         </li>  
-                        <li class="nav-item">
-                             <a class="nav-link text-light" asp-area="" asp-controller="Product" asp-action="GetCart"><b><i class="fas fa-shopping-cart" style="font-size:17px;"></i></b>
-                          <span class="badge bg-secondary">
-                                @_userService.GetCartCount(user.Id)    
-                            </span>
-                            </a>
-                        </li>                                
+                        <li class="nav-item">                            
+                            <a class="nav-link text-light" asp-area="" asp-controller="Product" asp-action="GetCart"><b>Cart</b></a>
+                        </li>                                    
                     </ul>
                     
                     <p class= "text-light" mx-3 my-1>

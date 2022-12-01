@@ -4,7 +4,10 @@
     Layout = "_Layout";
 }
 
+
+
     <div class="row justify-content-md-center mt-3">
+
         <div class="col col-md-auto">
             <ul class="list-group bg-white list-group-horizontal">
             <li class="list-group-item list-group-item-secondary">
@@ -20,6 +23,7 @@
         </div>
     </div>
 
+     <partial name="~/Views/Shared/Message.cshtml" />
 
     <div class="row justify-content-md-center mx-auto">
         <form method="get">
@@ -50,11 +54,11 @@
         {
 
                         <div class="col-3 my-4" >
-                            <p style="text-decoration:none" class="" asp-controller="Product" asp-action="Get" asp-route-id=@item.Id>
+                         
                                 <div class="card card-size-250 bg-dark text-light">
-
+                                   <a style="text-decoration:none" class="" asp-controller="Product" asp-action="Get" asp-route-id=@item.Id>
                                 <img class="card-img-top" src=@Url.Content(@item.ImgPath) alt="Card image"> <!--card-img-size-50-->
-
+                                </a>
                                
 
                                 <div class="card-body">
@@ -83,7 +87,7 @@
                                 </form>
                             </div>
                             </div>
-                        </p>
+                        
                     </div>
   }
   }
@@ -106,7 +110,7 @@
         }
         @if(ViewBag.HasNext)
         {
-            <li class="page item"><a class="page-link" asp-action="GetAll" asp-route-page="@(Model.Page+1)">
+            <li class="page item"><a class="page-link" asp-action="GetAll" asp-route-page="@(Model.Page+1)"
              asp-route-order="ViewBag.PriceSort" asp-route-search="@ViewBag.Search">Next</a>
             </li>
 

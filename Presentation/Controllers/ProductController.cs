@@ -19,13 +19,7 @@ namespace Presentation.Controllers
         [HttpGet("Product/Get/{id}")]
         public IActionResult Get(int id, string message = null, bool isSuccess = true)
         {
-            if (!string.IsNullOrEmpty(message))
-            {
-                if (isSuccess)
-                    ViewBag.Success = message;
-                else
-                    ViewBag.Error = message;
-            }
+            
 
 
             var res = _productService.Get(id);
@@ -42,7 +36,7 @@ namespace Presentation.Controllers
 
 
         [HttpGet]
-        public IActionResult GetAll(int page = 1, int pageSize = 4, ProductSortOrder order = ProductSortOrder.NameAsc, string search = null, bool changeSort = false)
+        public IActionResult GetAll(int page = 1, int pageSize = 4, ProductSortOrder order = ProductSortOrder.NameAsc, string search = null, bool changeSort = false, string message = null, bool isSuccess = true)
         {
             if (!string.IsNullOrEmpty(search))
                 ViewBag.Search = search;
@@ -53,6 +47,14 @@ namespace Presentation.Controllers
 
             ViewBag.HasPrevious = true;
             ViewBag.HasNext = true;
+
+            if (!string.IsNullOrEmpty(message))
+            {
+                if (isSuccess)
+                    ViewBag.Success = message;
+                else
+                    ViewBag.Error = message;
+            }
 
             if (page <= 1)
             {
@@ -102,10 +104,9 @@ namespace Presentation.Controllers
                 isSuccess = false;
             }
 
-            return RedirectToAction("Get",
+            return RedirectToAction("GetAll",
                 new
-                {
-                    id = dto.ProductId,
+                {                   
                     message = mes,
                     isSuccess = isSuccess
                 });

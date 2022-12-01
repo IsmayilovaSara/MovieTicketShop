@@ -54,7 +54,7 @@
                         <div class="col-3 my-4" >
                             <p style="text-decoration:none" class="" asp-controller="Product" asp-action="Get" asp-route-id=@item.Id>
                                 <div class="card card-size-250 bg-dark text-light">
-                                <img class="card-img-top" src=@Url.Content(null) alt="Card image"> <!--card-img-size-50-->
+                                <img class="card-img-top" src=@Url.Content(item.ImgPath) alt="Card image"> <!--card-img-size-50-->
 
                                 <div class="card-body">
                                     <h4 class="card-title">@item.Name</h4>
